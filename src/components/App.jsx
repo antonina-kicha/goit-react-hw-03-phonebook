@@ -17,6 +17,20 @@ export class App extends Component {
     filter: '',
   }
   
+  componentDidMount() {
+    const startContacts = localStorage.getItem('contacts');
+    const parsedStartContacts = JSON.parse(startContacts);
+    if (parsedStartContacts) {
+        this.setState({ contacts: parsedStartContacts });
+    }
+}
+
+  componentDidUpdate(prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    }
+  }
+
   handleSubmitForm = ({name, number}) => {
     const findRepeat = this.state.contacts.find(contact =>
       contact.name.toLowerCase() === name.toLowerCase());

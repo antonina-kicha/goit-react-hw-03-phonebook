@@ -28,14 +28,11 @@ export class ContactForm extends Component {
     }
     
     handleInputChange = evt => {
-        console.log(evt.currentTarget.name);
-        console.log(evt.currentTarget.value);
         this.setState({[evt.currentTarget.name]: evt.currentTarget.value})
     }
 
     handleSubmit = evt => {
         // evt.preventDefault();
-        console.log(this.state);
         this.props.onSubmit(this.state);
         this.resetForm();
     }
